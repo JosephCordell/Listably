@@ -13,6 +13,37 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/results-movies', async (req, res) => {
+  try {
+    res.render('results-movies');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/results-tvshows', async (req, res) => {
+  try {
+    res.render('results-tvshows');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/user', async (req, res) => {
+  try {
+    res.render('user');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get('*', async (req, res) => {
+  try {
+    res.render('404');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/sanic', async (req, res) => {
   try {
     res.render('sanic');
