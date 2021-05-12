@@ -1,5 +1,16 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Movie } = require('../../models');
+
+router.get('/', (req, res) => {
+  User.findAll({
+    where: {
+      email: req.body.email
+    },
+    include: [{
+      model: Movie
+    }]
+  }).then(data => res.json(data)).catch(err => res.status(500).json(err));
+});
 
 router.post('/', async (req, res) => {
   try {

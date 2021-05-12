@@ -2,16 +2,7 @@ const router = require('express').Router();
 const { List, Movie } = require('../../models');
 
 router.get('/', (req, res) => {
-  List.findAll(
-    {
-      where: {
-        user_id: req.params.user_id
-      },
-      include: {
-        model: Movie,
-        attributes: ['title']
-      }
-    }).then(data => res.json(data)).catch(err => res.status(500).json(err));
+  List.findAll().then(data => res.json(data)).catch(err => res.status(500).json(err));
 });
 
 router.post('/', (req, res) => {
@@ -21,14 +12,13 @@ router.post('/', (req, res) => {
 
 // router.put()
 // add another column for want to watch/watching/watched?
-// differ
 
 router.delete('/', (req, res) => {
   List.destroy(
     {
       where: {
-        user_id: req.params.user_id,
-        movie_id: req.params.movie_id
+        user_id: req.body.user_id,
+        movie_id: req.body.movie_id
       }
     }
   ).then(data => res.json(data)).catch(err => res.status(500).json(err));

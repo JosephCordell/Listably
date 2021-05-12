@@ -24,13 +24,9 @@ Movie.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    overview: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     vote_avg: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
   },
   {
