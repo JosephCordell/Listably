@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 //NEED SOMETHING LIKE "if movie exists... don't add"
 //send json => { “title”:”TITLE”, “release_date”: “RELEASE DATE”, “poster_path”: “POSTER_PATH”, “overview”: “OVERVIEW”, “vote_avg”: “VOTE_AVG” } //
-  Movie.create(req.body).then(data => res.json(data)).catch(err => res.status(666).json(err));
+  Movie.create(req.body).then(data => res.json(data)).catch(err => res.status(500).json(err));
 });
 
 router.put('/:id', (req, res) => {
