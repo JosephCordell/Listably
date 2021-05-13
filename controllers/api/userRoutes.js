@@ -6,9 +6,9 @@ router.get('/', (req, res) => {
     where: {
       email: req.body.email
     },
-    include: [{
+    include: {
       model: Movie
-    }]
+    }
   }).then(data => res.json(data)).catch(err => res.status(500).json(err));
 });
 
