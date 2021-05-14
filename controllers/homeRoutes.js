@@ -8,11 +8,11 @@ const {fetchTrendingMovies} = require('./api/movies');
 // const fetch = require('node-fetch');
 
 
-router.get('/trending', async (req, res) => {
+router.get('/results-movies', async (req, res) => {
   try {
     const movies = await fetchTrendingMovies();
-    res.json(movies);
-    // res.render('results-movies', {movies: movies});
+    // res.json(movies);
+    res.render('results-movies', {movies: movies.results});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -21,14 +21,6 @@ router.get('/trending', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     res.render('homepage');
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/results-movies', async (req, res) => {
-  try {
-    res.render('results-movies');
   } catch (err) {
     res.status(500).json(err);
   }
