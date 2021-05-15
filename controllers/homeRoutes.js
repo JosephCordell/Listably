@@ -1,21 +1,26 @@
+require('dotenv').config();
 const router = require('express').Router();
+const {fetchTrendingMovies} = require('./api/movies');
+
 // We'll use Auth later when we add users
 //const withAuth = require('../utils/auth');
 // This is what we'll use to get API data
 // const fetch = require('node-fetch');
-require('dotenv').config();
 
-router.get('/', async (req, res) => {
+
+router.get('/results-movies', async (req, res) => {
   try {
-    res.render('homepage');
+    const movies = await fetchTrendingMovies();
+    // res.json(movies);
+    res.render('results-movies', {movies: movies.results});
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/results-movies', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    res.render('results-movies');
+    res.render('homepage');
   } catch (err) {
     res.status(500).json(err);
   }
