@@ -59,7 +59,7 @@ section{
 }
 
 .search{
-    float: right;
+    width:45vw;
 }
 
 .card-container{
@@ -144,4 +144,8 @@ section{
     width: auto;
 }
 
+.search-dropdown{
+    border-radius: 5px;
+    background-color: transparent;
+}
 
