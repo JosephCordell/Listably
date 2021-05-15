@@ -1,0 +1,41 @@
+const { Model, DataTypes } = require('sequelize');
+
+const sequelize = require('../config/connections');
+
+class List extends Model {}
+
+List.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    movie_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'movie',
+        key: 'id'
+      }
+    }
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'list'
+  }
+);
+
+module.exports = List;
