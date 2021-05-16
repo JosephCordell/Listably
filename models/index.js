@@ -1,8 +1,7 @@
-const List = require('./List');
 const Movie = require('./Movie');
 const User = require('./User');
 
-User.belongsToMany(Movie, { through: List });
-Movie.belongsToMany(User, { through: List });
+User.hasMany(Movie);
+Movie.belongsTo(User);
 
-module.exports = { List, Movie, User };
+module.exports = { Movie, User };
