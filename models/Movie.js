@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { User } = require('.');
 
 const sequelize = require('../config/connections');
 
@@ -24,10 +25,14 @@ Movie.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    vote_avg: {
+    user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
+      allowNull: true,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    }
   },
   {
     sequelize,
