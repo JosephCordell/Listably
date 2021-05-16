@@ -8,7 +8,8 @@ router.get('/trending-movies', async (req, res) => {
     const movies = await fetchTrendingMovies();
     // res.json(movies);
     res.render('trending-movies', {
-      movies: movies.results
+      movies: movies.results,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -19,7 +20,8 @@ router.get('/movie-results/:id', async (req, res) => {
   try {
     const movies = await fetchMoviesSearch(req.params.id);
     res.render('movie-results', {
-      movies: movies.results
+      movies: movies.results,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -30,7 +32,8 @@ router.get('/tvshows-results/:id', async (req, res) => {
   try {
     const tv = await fetchTVSearch(req.params.id);
     res.render('tvshows-results', {
-      tv: tv.results
+      tv: tv.results,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -40,12 +43,12 @@ router.get('/tvshows-results/:id', async (req, res) => {
 router.get('/login', async (req, res) => {
   try {
     if (req.session.logged_in) {
-      res.redirect('/profile');
+      res.redirect('/user');
       return;
     }
     res.render('login', {
       loggedIn: req.user,
-      userId: 'a',
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,12 +58,12 @@ router.get('/login', async (req, res) => {
 router.get('/signup', async (req, res) => {
   try {
     if (req.session.logged_in) {
-      res.redirect('/profile');
+      res.redirect('/user');
       return;
     }
     res.render('signup', {
       loggedIn: req.user,
-      userId: 'a',
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -79,7 +82,8 @@ router.get('/trending-tvshows', async (req, res) => {
   try {
     const tv = await fetchTrendingTVshows()
     res.render('trending-tvshows', {
-      tv: tv.results
+      tv: tv.results,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
