@@ -41,7 +41,7 @@
                 </ul>
             </div>
         </div>
-        <div class="search">
+        <!--         <div class="search">
             <div class="input-group rounded">
                 <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                     aria-describedby="search-addon" />
@@ -49,7 +49,24 @@
                     <i class="fas fa fa-search"></i>
                 </span>
             </div>
+        </div> -->
+
+        <div class="search">
+            <div class="input-group mb-3">
+                    <select class="search-dropdown">
+                        <option value="0" selected disabled hidden>Select Category</option>
+                        <option id="dropdown" class="dropdown-item" value="1">Movies</option>
+                        <option class="dropdown-item" id="dropdown" value="2">TV Shows</option>
+                    </select>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button id="search-button">
+                    <i class="fas fa fa-search"></i>
+                </button>
+            </div>
         </div>
+
+
+
         <div class="login">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -88,14 +105,8 @@
 
 
     <script src="js/login.js"></script>
+    <script src="../public/js/userQuery.js"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -13,15 +13,10 @@
         <div class="card-title">{{ movie.overview }}</div>
 
         <div class="myRating">
-            Add to my list:
         </div>
        
-        <select class="changeStatus">
-            <option value="0" selected="">Watching</option>
-            <option value="2">Want to Watch</option>
-            <option value="4">Complete</option>
+    {{> changeStatus }}
 
-        </select>
     </div>
 </div>
 {{/each}} 

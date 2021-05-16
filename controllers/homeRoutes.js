@@ -1,6 +1,7 @@
 require('dotenv').config();
 const router = require('express').Router();
-const {fetchTrendingMovies} = require('./api/movies');
+const {fetchTrendingMovies, fetchMoviesSearch, fetchTrendingTVshows, fetchTVSearch} = require('../public/js/movies');
+
 
 // We'll use Auth later when we add users
 //const withAuth = require('../utils/auth');
@@ -8,11 +9,29 @@ const {fetchTrendingMovies} = require('./api/movies');
 // const fetch = require('node-fetch');
 
 
-router.get('/results-movies', async (req, res) => {
+router.get('/trending-movies', async (req, res) => {
   try {
     const movies = await fetchTrendingMovies();
     // res.json(movies);
-    res.render('results-movies', {movies: movies.results});
+    res.render('trending-movies', {movies: movies.results});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/movie-results/:id', async (req, res) => {
+  try {
+    const movies = await fetchMoviesSearch(req.params.id);
+    res.render('movie-results', {movies: movies.results});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/tvshows-results/:id', async (req, res) => {
+  try {
+    const tv = await fetchTVSearch(req.params.id);
+    res.render('tvshows-results', {tv: tv.results});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -26,24 +45,20 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/results-tvshows', async (req, res) => {
+router.get('/trending-tvshows', async (req, res) => {
   try {
-    res.render('results-tvshows');
+    const tv = await fetchTrendingTVshows()
+    res.render('trending-tvshows', {tv: tv.results});
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+
+
 router.get('/user', async (req, res) => {
   try {
     res.render('user');
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-router.get('*', async (req, res) => {
-  try {
-    res.render('404');
   } catch (err) {
     res.status(500).json(err);
   }
@@ -57,4 +72,11 @@ router.get('/sanic', async (req, res) => {
   }
 });
 
+router.get('*', async (req, res) => {
+  try {
+    res.render('404');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;
