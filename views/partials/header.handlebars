@@ -33,8 +33,7 @@
 
         <div class="login">
             <div class="collapse navbar-collapse" id="navbarNav">
-                {{#if logged_In}}
-                {{else}}
+                {{#if loggedIn }}
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/user">User</a>
@@ -43,6 +42,7 @@
                         <a class="nav-link" href="" id="logout">Logout</a>
                     </li>
                 </ul>
+                {{else}}
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>

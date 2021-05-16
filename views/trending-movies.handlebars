@@ -3,7 +3,7 @@
 </div>
 {{#each movies as |movie|}}
 <div class="results-container">
-    <div class="card-info" data-title="{{ movie.title }}" data-date="{{ movie.release_date }}" data-poster="{{movie.poster_path}}">
+    <div class="card-info" data-title="{{ movie.title }}" data-date="{{ movie.release_date }}" data-poster="{{movie.poster_path}}" data-id='{{ id }}'>
         <img src = "https://image.tmdb.org/t/p/w200{{movie.poster_path}}" alt="Movie" class="card-image">
       
         <div class="card-title">{{movie.title}}({{movie.release_date}})</div>

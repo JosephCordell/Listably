@@ -9,7 +9,8 @@ router.get('/trending-movies', async (req, res) => {
     // res.json(movies);
     res.render('trending-movies', {
       movies: movies.results,
-      logged_in: req.session.logged_in
+      id: req.session.name,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -21,7 +22,8 @@ router.get('/movie-results/:id', async (req, res) => {
     const movies = await fetchMoviesSearch(req.params.id);
     res.render('movie-results', {
       movies: movies.results,
-      logged_in: req.session.logged_in
+      id: req.session.id,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -33,7 +35,8 @@ router.get('/tvshows-results/:id', async (req, res) => {
     const tv = await fetchTVSearch(req.params.id);
     res.render('tvshows-results', {
       tv: tv.results,
-      logged_in: req.session.logged_in
+      id: req.session.id,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -47,8 +50,8 @@ router.get('/login', async (req, res) => {
       return;
     }
     res.render('login', {
-      loggedIn: req.user,
-      logged_in: req.session.logged_in
+      id: req.session.id,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -62,8 +65,8 @@ router.get('/signup', async (req, res) => {
       return;
     }
     res.render('signup', {
-      loggedIn: req.user,
-      logged_in: req.session.logged_in
+      id: req.session.id,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -72,7 +75,10 @@ router.get('/signup', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    res.render('homepage');
+    res.render('homepage', {
+      id: req.session.id,
+      loggedIn: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -83,7 +89,8 @@ router.get('/trending-tvshows', async (req, res) => {
     const tv = await fetchTrendingTVshows()
     res.render('trending-tvshows', {
       tv: tv.results,
-      logged_in: req.session.logged_in
+      id: req.session.id,
+      loggedIn: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -92,7 +99,10 @@ router.get('/trending-tvshows', async (req, res) => {
 
 router.get('/user', withAuth, async (req, res) => {
   try {
-    res.render('user');
+    res.render('user', {
+      id: req.session.id,
+      loggedIn: req.session.logged_in
+    });
   } catch (err) {
     res.status(500).json(err);
   }
