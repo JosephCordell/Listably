@@ -4,11 +4,11 @@ const addToList = (movie) => {
   const missive = {
     'title': movie.title,
     'release_date': movie.date,
-    'poster_path': movie.poster
-    //'user_id': 'USER_ID"
+    'poster_path': movie.poster,
+    'user_id': 'USER_ID'
   };
 
-  fetch('http://localhost:3000/api/movies', {
+  fetch('/api/movies', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -24,7 +24,7 @@ const removeFromList = (movie) => {
     //'user_id': 'user_id'
   };
 
-  fetch('http://localhost:3000/api/movies', {
+  fetch('/api/movies', {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',

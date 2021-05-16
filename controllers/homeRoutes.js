@@ -1,19 +1,15 @@
 require('dotenv').config();
 const router = require('express').Router();
 const {fetchTrendingMovies, fetchMoviesSearch, fetchTrendingTVshows, fetchTVSearch} = require('../public/js/movies');
-
-
-// We'll use Auth later when we add users
-//const withAuth = require('../utils/auth');
-// This is what we'll use to get API data
-// const fetch = require('node-fetch');
-
+const withAuth = require('../utils/auth');
 
 router.get('/trending-movies', async (req, res) => {
   try {
     const movies = await fetchTrendingMovies();
     // res.json(movies);
-    res.render('trending-movies', {movies: movies.results});
+    res.render('trending-movies', {
+      movies: movies.results
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -22,7 +18,9 @@ router.get('/trending-movies', async (req, res) => {
 router.get('/movie-results/:id', async (req, res) => {
   try {
     const movies = await fetchMoviesSearch(req.params.id);
-    res.render('movie-results', {movies: movies.results});
+    res.render('movie-results', {
+      movies: movies.results
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -31,7 +29,39 @@ router.get('/movie-results/:id', async (req, res) => {
 router.get('/tvshows-results/:id', async (req, res) => {
   try {
     const tv = await fetchTVSearch(req.params.id);
-    res.render('tvshows-results', {tv: tv.results});
+    res.render('tvshows-results', {
+      tv: tv.results
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/login', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.redirect('/profile');
+      return;
+    }
+    res.render('login', {
+      loggedIn: req.user,
+      userId: 'a',
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/signup', async (req, res) => {
+  try {
+    if (req.session.logged_in) {
+      res.redirect('/profile');
+      return;
+    }
+    res.render('signup', {
+      loggedIn: req.user,
+      userId: 'a',
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -48,15 +78,15 @@ router.get('/', async (req, res) => {
 router.get('/trending-tvshows', async (req, res) => {
   try {
     const tv = await fetchTrendingTVshows()
-    res.render('trending-tvshows', {tv: tv.results});
+    res.render('trending-tvshows', {
+      tv: tv.results
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-
-
-router.get('/user', async (req, res) => {
+router.get('/user', withAuth, async (req, res) => {
   try {
     res.render('user');
   } catch (err) {

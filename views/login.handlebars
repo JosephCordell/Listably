@@ -1,0 +1,21 @@
+<div class="container-user">
+  <h2>Login</h2>
+
+  <form {{!-- action="/api/users/login"  method="POST" --}} class='loginform'>
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="email" id="email" name="username" class="form-control form-control-sm login-input"
+        placeholder="Enter Email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <input type="password" id="password" name="password" class="form-control form-control-sm login-input"
+        placeholder="Enter Password" />
+    </div>
+    <div class="submit-button">
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/login.js"></script>
