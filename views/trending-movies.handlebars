@@ -1,23 +1,18 @@
 <div class="results">
-    <h2>Your search results for: query</h2>
+    <h2>Top 25 Trending Movies</h2>
 </div>
 {{#each movies as |movie|}}
 <div class="results-container">
     <div class="card-info">
         <img src = "https://image.tmdb.org/t/p/w200{{movie.poster_path}}" alt="Movie" class="card-image">
       
-        <div class="card-title">{{movie.title}}({{movie.release_date}}){{movie.vote_average}}{{movie.overview}}`</div>
+        <div class="card-title">{{movie.title}}({{movie.release_date}})</div>
        
         <div class="myRating">
-            Add to my list:
         </div>
        
-        <select class="changeStatus">
-            <option value="0" selected="">Watching</option>
-            <option value="2">Want to Watch</option>
-            <option value="4">Complete</option>
+    {{> changeStatus }}
 
-        </select>
     </div>
 </div>
 {{/each}} 

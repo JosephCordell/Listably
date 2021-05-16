@@ -1,6 +1,6 @@
 require('dotenv').config();
 const router = require('express').Router();
-const {fetchTrendingMovies, fetchMoviesSearch} = require('./api/movies');
+const {fetchTrendingMovies, fetchMoviesSearch, fetchTrendingTVshows, fetchTVSearch} = require('../public/js/movies');
 
 
 // We'll use Auth later when we add users
@@ -21,11 +21,17 @@ router.get('/trending-movies', async (req, res) => {
 
 router.get('/movie-results/:id', async (req, res) => {
   try {
-    console.log(req.params.id);
     const movies = await fetchMoviesSearch(req.params.id);
-    /* res.send(movies); */
-    // res.json(movies);
     res.render('movie-results', {movies: movies.results});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/tvshows-results/:id', async (req, res) => {
+  try {
+    const tv = await fetchTVSearch(req.params.id);
+    res.render('tvshows-results', {tv: tv.results});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -41,7 +47,8 @@ router.get('/', async (req, res) => {
 
 router.get('/trending-tvshows', async (req, res) => {
   try {
-    res.render('trending-tvshows');
+    const tv = await fetchTrendingTVshows()
+    res.render('trending-tvshows', {tv: tv.results});
   } catch (err) {
     res.status(500).json(err);
   }

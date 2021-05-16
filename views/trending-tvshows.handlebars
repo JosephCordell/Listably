@@ -1,21 +1,20 @@
 <div class="results">
-    <h2>Your search results for: query</h2>
+    <h2>Top 25 Trending TV Shows</h2>
 </div>
-
+{{#each tv as |tv|}}
 <div class="results-container">
     <div class="card-info">
-        <img src="assets/sample-tv.jpg" alt="TV" class="card-image">
-        <div class="card-title">This is a sample TV show title (Year)</div>
+        <img src = "https://image.tmdb.org/t/p/w200{{tv.poster_path}}" alt="tv" class="card-image">
+      
+        <div class="card-title">{{tv.name}}{{!-- ({{tv.first_air_date}}) --}}</div>
 
+        <div> {{tv.overview}} </div>
+       
         <div class="myRating">
-            Add to my list:
         </div>
+       
+    {{> changeStatus }}
 
-        <select class="changeStatus">
-            <option value="0" selected="">Watching</option>
-            <option value="2">Want to Watch</option>
-            <option value="4">Complete</option>
-
-        </select>
     </div>
 </div>
+{{/each}} 

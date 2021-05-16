@@ -1,7 +1,7 @@
 const searchButtonEl = document.getElementById('search-button');
 /* const movieDbApiKey = process.env.MOVIE_DB_API_KEY; */
 const dropdownEl = document.querySelector('.search-dropdown');
-let movies = false;
+let movies = true;
 let tvshows = false;
 
 
@@ -10,17 +10,15 @@ function submitSearch(event) {
   let url;
   const searchString = document.querySelector('.form-control').value;
   if (movies){
-    document.location= `/movie-results/${searchString}`
-    url = `https://api.themoviedb.org/3/search/movie?api_key=b12eaa7751ce0dea2e20ccc0ee014f47&query=`;
+    document.location.replace(`/movie-results/${searchString}`)
   } else if (tvshows){
-    url = `https://api.themoviedb.org/3/search/tv?api_key=b12eaa7751ce0dea2e20ccc0ee014f47&query=`;
+    document.location.replace(`/tvshows-results/${searchString}`)
   }
   if (!searchString) {
     console.error('You need to input text!');
     return;
   }
-  console.log(url + searchString);
-
+  return;
 }
 searchButtonEl.addEventListener('click', submitSearch);
 dropdownEl.addEventListener('change', function () {
