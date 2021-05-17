@@ -7,7 +7,7 @@ const { User, Media } = require('../models');
 const posterPath = (ArrIn) => {
     for (let i = 0; i < ArrIn.results.length; i++) {
         if (!ArrIn.results[i].poster_path) {
-            ArrIn.results[i].poster_path = 'https://via.placeholder.com/129x182';
+            ArrIn.results[i].poster_path = '/assets/placeholder.jpg';
         } else {
             ArrIn.results[i].poster_path = `https://image.tmdb.org/t/p/w200${ArrIn.results[i].poster_path}`;
         }
@@ -114,32 +114,29 @@ router.get('/user', withAuth, async (req, res) => {
         let user = await User.findByPk(req.session.user_id);
         let mediaArr = [];
         if (!user.todo) {
-            // If media is emtpy prompt user to go select a movie In handlebar section
         } else {
-            let bricks = JSON.parse(user.todo)
+            let bricks = JSON.parse(user.todo);
             for (let i = 0; i < bricks.length; i++) {
-                todoArr = bricks[i][0]
+                todoArr = bricks[i][0];
+                todoNum = bricks[i][1];
                 let almost = await Media.findByPk(todoArr);
-                
-                    let soClose = {}
-                    soClose[`todo${todoArr[1]}`] = true;
-                    
 
+                let soClose = {};
+                soClose[`todo${todoNum}`] = true;
 
-                    mediaArr.push({
-                        mediatype: almost.mediatype,
-                        poster_path: almost.poster_path,
-                        title: almost.title,
-                        id: almost.id,
-                        ...soClose
-                    });
-                
+                mediaArr.push({
+                    mediatype: almost.mediatype,
+                    poster_path: almost.poster_path,
+                    title: almost.title,
+                    id: almost.id,
+                    ...soClose,
+                });
             }
         }
         res.render('user', {
             id: req.session.user_id,
             loggedIn: req.session.logged_in,
-            mediaArr
+            mediaArr,
         });
     } catch (err) {
         res.status(500).json(err);

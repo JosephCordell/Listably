@@ -10,13 +10,37 @@ const signupFormHandler = async (event) => {
             body: JSON.stringify({ name, email, password }),
             headers: { 'Content-type': 'application/json' },
         });
+        console.log('2');
 
         if (response.ok) {
             document.location.replace('/user');
         } else {
-            alert(response.statusText);
+            modal.classList.remove('hide');
+            return
         }
     }
 };
 
+const modal = document.querySelector('#myModal');
+const span = document.querySelector('#modal-close');
+
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+
+
+span.addEventListener(
+    'click',
+    () => {
+        modal.classList.add('hide');
+    },
+    false
+);
+
+window.addEventListener(
+    'click',
+    (event) => {
+        if (event.target === modal) {
+            modal.classList.add('hide');
+        }
+    },
+    false
+);

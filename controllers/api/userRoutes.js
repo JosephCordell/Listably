@@ -6,14 +6,14 @@ router.post('/login', async (req, res) => {
         const userData = await User.findOne({ where: { email: req.body.email } });
 
         if (!userData) {
-            res.status(400).json({ message: 'Username' });
+            res.status(400).json();
             return;
         }
-
+        
         const validPassword = await userData.checkPassword(req.body.password);
-
+        
         if (!validPassword) {
-            res.status(400).json({ message: 'Password' });
+            res.status(400).json();
             return;
         }
 
@@ -40,9 +40,9 @@ router.post('/logout', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    console.log('1');
     try {
         const userData = await User.create(req.body);
-
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
