@@ -110,8 +110,11 @@ section{
     width: 50%;
 }
 
-.myRating{
+.changeStatusUser{
     margin-left: auto;
+}
+.myRating{
+margin-left: auto;
 }
 
 .results{
@@ -183,5 +186,15 @@ section{
     padding-left: 10px;
     padding-right: 10px;
     color: white;
+}
+
+.empty-list{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.hide{
+    display: none;
 }
 
