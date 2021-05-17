@@ -1,30 +1,39 @@
 const buttons = document.getElementsByClassName('changeStatus');
 
-const addToList = (movie) => {
+const addToList = (media, option) => {
+
   const missive = {
-    'title': movie.title,
-    'release_date': movie.date,
-    'poster_path': movie.poster,
-    'user_id': 'USER_ID'
+    'title': media.title,
+    'release_date': media.date,
+    'poster_path': media.poster,
+    'mediatype': media.type,
+    'id': media.id,
+    'todo': option
   };
 
-  fetch('/api/movies', {
+  fetch('/api/media', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(missive)
-  }).then(response => console.log(response)).catch(error => console.log(error));
+  })
+  .then(response => {
+    if (response.status === 401) {
+      document.location.replace('/login')
+    }
+  })
+    .catch(error => console.log(error));
 };
 
-const removeFromList = (movie) => {
+const removeFromList = (media) => {
   const missive = {
-    'title': movie.title
+    'title': media.title
     //'user_id': 'user_id'
   };
 
-  fetch('/api/movies', {
+  fetch('/api/media', {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
@@ -35,16 +44,20 @@ const removeFromList = (movie) => {
 };
 
 const controller = (e) => {
-  const movie = e.target.parentNode.dataset;
+  const media = e.target.parentNode.dataset;
 
   switch(e.target.value) {
+  case '0':
+    console.log(e.target);
+    addToList(media, 0);
+    break;
   case '2':
     console.log(e.target);
-    addToList(movie);
+    addToList(media, 2);
     break;
   case '4':
     console.log(e.target);
-    removeFromList(movie);
+    removeFromList(media, 4);
     break;
   default:
     break;
