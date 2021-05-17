@@ -1,5 +1,5 @@
 <div class="results">
-    <h2>Your search results for: query</h2>
+    <h2>Your search results:</h2>
 </div>
 {{#each movies as |movie| }}
 <div class="results-container">
@@ -7,11 +7,11 @@
         data-poster="{{movie.poster_path}}">
         <img src="{{movie.poster_path}}" alt="Movie" class="card-image" data-poster-path="{{ movie.poster_path }}">
 
-        <div class="card-title" data-movie-title="{{ movie.title }}">{{ movie.title }}</div>
-
-        <div class="card-title" data-release-date="{{ movie.release_date }}">{{ movie.release_date }}</div>
-
-        <div class="card-title">{{ movie.overview }}</div>
+        <div class="title-date">
+            <div class="card-title" data-movie-title="{{ movie.title }}">{{ movie.title }}</div>
+            <div class="date" data-release-date="{{ movie.release_date }}">{{ movie.release_date }}</div>
+        </div>
+        <div class="description">{{ movie.overview }}</div>
 
         <div class="myRating">
         </div>
