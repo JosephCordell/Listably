@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
                 }
             }
             if (!found) {
-
                 userObj.push([req.body.id, req.body.todo]);
             }
         }
