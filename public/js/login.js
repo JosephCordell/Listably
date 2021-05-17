@@ -16,10 +16,8 @@ const loginFormHandler = async (event) => {
             // If successful, redirect the browser to the profile page
             document.location.replace('/user');
         } else {
-
             modal.classList.remove('hide');
         }
-
     }
 };
 const modal = document.querySelector('#myModal');

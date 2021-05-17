@@ -16,7 +16,7 @@ const signupFormHandler = async (event) => {
             document.location.replace('/user');
         } else {
             modal.classList.remove('hide');
-            return
+            return;
         }
     }
 };
@@ -25,7 +25,6 @@ const modal = document.querySelector('#myModal');
 const span = document.querySelector('#modal-close');
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-
 
 span.addEventListener(
     'click',

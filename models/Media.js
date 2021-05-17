@@ -30,7 +30,7 @@ Media.init(
         mediatype: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
     },
     {
         sequelize,
