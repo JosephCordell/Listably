@@ -43,7 +43,7 @@ router.get('/tvshows-results/:id', async (req, res) => {
   }
 });
 
-router.get('/login', async (req, res) => {
+router.get('/login', (req, res) => {
   try {
     if (req.session.logged_in) {
       res.redirect('/user');
@@ -73,7 +73,7 @@ router.get('/signup', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   try {
     res.render('homepage', {
       id: req.session.id,
@@ -97,7 +97,7 @@ router.get('/trending-tvshows', async (req, res) => {
   }
 });
 
-router.get('/user', withAuth, async (req, res) => {
+router.get('/user', withAuth, (req, res) => {
   try {
     res.render('user', {
       id: req.session.id,
