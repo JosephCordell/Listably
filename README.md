@@ -30,7 +30,7 @@ Listably is a media consumption tracker where a user can find trending movies or
 #### Contributors
 [Joseph Cordell](https://github.com/JosephCordell), 
 [Paul Jeffery](https://github.com/Paulndrwjeffrey), 
-[Melissa Tan](https://github.com/melissa-tan), and
+[Melissa Tan](https://github.com/melissa-tan), and 
 [Kila Weeks](https://github.com/kilaweeks)
 
 

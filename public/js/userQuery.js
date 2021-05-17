@@ -6,7 +6,6 @@ let tvshows = false;
 
 function submitSearch(event) {
     event.preventDefault();
-    let url;
     const searchString = document.querySelector('.form-control').value;
     if (movies) {
         document.location.replace(`/movie-results/${searchString}`);

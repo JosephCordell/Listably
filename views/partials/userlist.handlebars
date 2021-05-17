@@ -2,13 +2,13 @@
 {{#each mediaArr as |media| }}
 <div class="card-container {{media.mediatype}}">
 
-    <div class="card-info" data-title="{{ media.title }}" data-poster="{{media.poster_path}}" data-id='{{ media.id }}'
+    <div class="card-info " data-title="{{ media.title }}" data-poster="{{media.poster_path}}" data-id='{{ media.id }}'
         data-type="media" data-description='{{media.overview}}' data-todo="{{media.todo}}">
 
         <img src="{{media.poster_path}}" alt="{{media.mediatype}}" class="card-image">
         <div class="card-title">{{media.title}}</div>
 
-        <select class="changeStatus">
+        <select class="changeStatusUser">
             <option value="0" {{#if media.todo0}} selected="" {{/if}}>Watching</option>
             <option value="2" {{#if media.todo2}} selected="" {{/if}}>Want to Watch</option>
             <option value="4" {{#if media.todo4}} selected="" {{/if}}>Completed</option>
@@ -19,6 +19,6 @@
 {{/each}}
 {{else}}
 
-<div> Nothing added yet. Add to your list by searching or looking at trending</div>
+<div class="empty-list"> Nothing added yet. Add to your list by searching or looking at trending</div>
 
 {{/if}}
