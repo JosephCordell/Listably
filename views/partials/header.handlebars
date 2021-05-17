@@ -1,55 +1,58 @@
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Listably</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/trending-movies">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/trending-tvshows">TV Shows</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user">My Lists</a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Listably</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/trending-movies">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/trending-tvshows">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">My Lists</a>
+                </li>
+            </ul>
         </div>
         <div class="search">
             <div class="input-group mb-3">
-                    <select class="search-dropdown">
-                        <option id="dropdown" class="dropdown-item" value="1">Movies</option>
-                        <option class="dropdown-item" id="dropdown" value="2">TV Shows</option>
-                    </select>
+                <select class="search-dropdown">
+                    <option id="dropdown" class="dropdown-item" value="1">Movies</option>
+                    <option class="dropdown-item" id="dropdown" value="2">TV Shows</option>
+                </select>
                 <input type="text" class="form-control" id="search-input" aria-label="Text input with dropdown button">
                 <button id="search-button">
                     <i class="fas fa fa-search"></i>
                 </button>
             </div>
         </div>
+    </div>
 
-        <div class="login">
-            <div class="collapse navbar-collapse" id="navbarNav">
-
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="" id="logout">Logout</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signup">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="login">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {{#if loggedIn }}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" id="logout">Logout</a>
+                </li>
+            </ul>
+            {{else}}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+            </ul>
+            {{/if}}
         </div>
-    </nav>  
+    </div>
+</nav>

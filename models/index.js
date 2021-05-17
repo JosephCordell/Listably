@@ -1,7 +1,5 @@
-const Movie = require('./Movie');
+const Media = require('./Media');
 const User = require('./User');
 
-User.hasMany(Movie);
-Movie.belongsTo(User);
 
-module.exports = { Movie, User };
+module.exports = { Media, User };
