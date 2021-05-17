@@ -20,6 +20,13 @@ router.get('/trending-movies', async (req, res) => {
 router.get('/movie-results/:id', async (req, res) => {
   try {
     const movies = await fetchMoviesSearch(req.params.id);
+    for (let i = 0; i < movies.results.length; i++) {
+      if (!(movies.results[i].poster_path)) {
+        movies.results[i].poster_path = `https://via.placeholder.com/129x182`
+      } else {
+        movies.results[i].poster_path = `https://image.tmdb.org/t/p/w200${movies.results[i].poster_path}`
+      }
+    }
     res.render('movie-results', {
       movies: movies.results,
       id: req.session.id,

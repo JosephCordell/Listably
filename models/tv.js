@@ -1,11 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
-const { User } = require('.');
 
 const sequelize = require('../config/connections');
 
-class Movie extends Model { }
+class TVShows extends Model { }
 
-Movie.init(
+TVShows.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -43,4 +42,4 @@ Movie.init(
   },
 );
 
-module.exports = Movie;
+module.exports = TVShows;

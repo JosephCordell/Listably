@@ -4,17 +4,17 @@
 {{#each tv as |tv|}}
 <div class="results-container">
     <div class="card-info">
-        <img src = "https://image.tmdb.org/t/p/w200{{tv.poster_path}}" alt="tv" class="card-image">
-      
+        <img src="https://image.tmdb.org/t/p/w200{{tv.poster_path}}" alt="tv" class="card-image">
+
         <div class="card-title">{{tv.name}}{{!-- ({{tv.first_air_date}}) --}}</div>
 
         <div> {{tv.overview}} </div>
-       
+
         <div class="myRating">
         </div>
-       
-    {{> changeStatus }}
+
+        {{> changeStatus }}
 
     </div>
 </div>
-{{/each}} 
+{{/each}}
