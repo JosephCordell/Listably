@@ -4,9 +4,10 @@
 {{#each movies as |movie| }}
 <div class="results-container">
     <div class="card-info" data-title="{{ movie.title }}" data-date="{{ movie.release_date }}"
-        data-poster="{{movie.poster_path}}">
-        <img src="https://image.tmdb.org/t/p/w200{{movie.poster_path}}" alt="Movie" class="card-image"
-            data-poster-path="{{ movie.poster_path }}">
+        data-poster="{{movie.poster_path}}" data-type="movie" data-description='{{movie.overview}}'
+        data-id='{{movie.id}}'>
+
+        <img src="{{movie.poster_path}}" alt="Movie" class="card-image" data-poster-path="{{ movie.poster_path }}">
 
         <div class="title-date">
             <div class="card-title" data-movie-title="{{ movie.title }}">{{ movie.title }}</div>
