@@ -1,6 +1,6 @@
 const searchButtonEl = document.getElementById('search-button');
-/* const movieDbApiKey = process.env.MOVIE_DB_API_KEY; */
 const dropdownEl = document.querySelector('.search-dropdown');
+const searchInputEl = document.querySelector('#search-input');
 let movies = true;
 let tvshows = false;
 
@@ -20,6 +20,8 @@ function submitSearch(event) {
   }
   return;
 }
+
+searchInputEl.addEventListener('change', submitSearch);
 searchButtonEl.addEventListener('click', submitSearch);
 dropdownEl.addEventListener('change', function () {
   if (this.value == 1) {
