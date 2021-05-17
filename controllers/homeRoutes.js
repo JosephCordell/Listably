@@ -117,21 +117,23 @@ router.get('/user', withAuth, async (req, res) => {
             // If media is emtpy prompt user to go select a movie In handlebar section
         } else {
             let bricks = JSON.parse(user.todo)
-            
-
             for (let i = 0; i < bricks.length; i++) {
-                todoArr = bricks[i]
-                let almost = await Media.findByPk(todoArr[0]);
+                todoArr = bricks[i][0]
+                let almost = await Media.findByPk(todoArr);
                 
-                let soClose = {}
+                    let soClose = {}
+                    soClose[`todo${todoArr[1]}`] = true;
+                    
+
+
+                    mediaArr.push({
+                        mediatype: almost.mediatype,
+                        poster_path: almost.poster_path,
+                        title: almost.title,
+                        id: almost.id,
+                        ...soClose
+                    });
                 
-                soClose[`todo${todoArr[1]}`] = true;
-                mediaArr.push({
-                    mediatype: almost.mediatype,
-                    poster_path: almost.poster_path,
-                    title: almost.title,
-                    ...soClose
-                });
             }
         }
         res.render('user', {
@@ -140,7 +142,6 @@ router.get('/user', withAuth, async (req, res) => {
             mediaArr
         });
     } catch (err) {
-        console.log(err);
         res.status(500).json(err);
     }
 });

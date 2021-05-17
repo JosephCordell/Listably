@@ -14,11 +14,13 @@ const port = process.env.PORT || 3000;
 //set up Handlebars with custom helpers
 const hbs = exphbs.create({ helpers });
 
-app.use(session({
-  secret: 'Super secret secret',
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(
+    session({
+        secret: 'Super secret secret',
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -30,5 +32,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(port, () => console.log(`Now listening on port ${port}`));
+    app.listen(port, () => console.log(`Now listening on port ${port}`));
 });

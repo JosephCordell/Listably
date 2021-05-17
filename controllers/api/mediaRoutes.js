@@ -1,26 +1,6 @@
 const router = require('express').Router();
 const { Media, User } = require('../../models');
 
-router.get('/', (req, res) => {
-    Movie.findAll({
-        where: {
-            user_id: req.body.user_id,
-        },
-    })
-        .then((data) => res.json(data))
-        .catch((err) => res.status(500).json(err));
-});
-
-router.get('/:id', (req, res) => {
-    Movie.findOne({
-        where: {
-            id: req.params.id,
-        },
-    })
-        .then((data) => res.json(data))
-        .catch((err) => res.status(500).json(err));
-});
-
 router.post('/', async (req, res) => {
     try {
         let userObj;
@@ -30,33 +10,33 @@ router.post('/', async (req, res) => {
         }
         let user = await User.findByPk(req.session.user_id);
         if (!user.todo) {
-            userObj = [req.body.id, req.body.todo];
+            userObj = [[req.body.id, req.body.todo]];
         } else {
-            userObj = JSON.parse([user.todo]);
+            userObj = JSON.parse(user.todo);
 
             let found = false;
 
             for (let i = 0; i < userObj.length; i++) {
                 if (userObj[i][0] === req.body.id) {
-                  found = true;
-                  if (userObj[i][1] === req.body.todo)   {                    
-                    break;
-                  } else {
-                    userObj[i][1] = req.body.todo
-                  }
+                    found = true;
+                    if (userObj[i][1] === req.body.todo) {
+                        break;
+                    } else {
+                        userObj[i][1] = req.body.todo;
+                    }
                 }
             }
             if (!found) {
+
                 userObj.push([req.body.id, req.body.todo]);
             }
         }
-        
-        const stringUserObj = JSON.stringify(userObj)
-        console.log(stringUserObj);
 
-        user.todo = stringUserObj
+        const stringUserObj = JSON.stringify(userObj);
 
-        user = await user.save()
+        user.todo = stringUserObj;
+
+        user = await user.save();
 
         const newMedia = await Media.create({
             ...req.body,
@@ -73,29 +53,31 @@ router.post('/', async (req, res) => {
             }
         }
         res.status(400).json(err);
-        console.log(err);
     }
 });
 
-router.put('/:id', (req, res) => {
-    Movie.update({
-        where: {
-            id: req.params.id,
-        },
-    })
-        .then((data) => res.json(data))
-        .catch((err) => res.status(500).json(err));
-});
+router.delete('/', async (req, res) => {
+    let user = await User.findByPk(req.session.user_id);
 
-router.delete('/', (req, res) => {
-    Movie.destroy({
-        where: {
-            title: req.body.title,
-            //user_id: req.body.user_id
-        },
-    })
-        .then((data) => res.json(data))
-        .catch((err) => res.status(500).json(err));
+    let userObj;
+    userObj = await JSON.parse(user.todo);
+    let found = false;
+
+    for (let i = 0; i < userObj.length; i++) {
+        if (userObj[i][0] === req.body.id) {
+            found = true;
+            let index = i;
+            if (index > -1) {
+                userObj.splice(index, 1);
+            }
+        }
+    }
+
+    const stringUserObj = JSON.stringify(userObj);
+
+    user.todo = stringUserObj;
+
+    user = await user.save();
 });
 
 module.exports = router;
