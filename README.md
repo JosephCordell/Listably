@@ -15,16 +15,16 @@ Listably is a media consumption tracker where a user can find trending movies or
 1. Go to [Listaly](listably.herokuapp.com)
 	
 2. Please create an account or sign in on the top right corner of the page.
-	![Screenshot of the Listably Homepage](Please attach homepage here)
+	![Screenshot of the Listably Login](./public/assets/listably-login.png)
 
 3. Navigate to the trending page by clicking Movies/TV Shows on the nav bar or the circular image from the home page or use the search bar to conduct a search.</br>
-	![Screenshot of the Listably Homepage](Please attach path to homepage screenshot here)
+	![Screenshot of the Listably Homepage](./public/assets/listably-homepage.png)
 
 4. Add media that you would like to keep track on by using the dropdown on each card. <br>
-    ![Screenshot of the Listably Trending movies](Please attach path to trending movies screenshot here)
+    ![Screenshot of the Listably Trending movies](./public/assets/listably-trending.png)
 
 5. Click on "My List" to see the media that you have saved to your list. Use the column on the left to filter your results.
-    ![Screenshot of the Listably User Page](Please attach path to user screenshot here)
+    ![Screenshot of the Listably User Page](./public/assets/listably-user.png)
 
 ## Contribution
 #### Contributors
@@ -35,6 +35,6 @@ Listably is a media consumption tracker where a user can find trending movies or
 
 
 ## Questions
-If you have any questions or see any issues, please submit and [issue](https://github.com/JosephCordell/Listably/issues) on GitHub!
+If you have any questions or see any issues, please submit an [issue](https://github.com/JosephCordell/Listably/issues) on GitHub!
 
 
