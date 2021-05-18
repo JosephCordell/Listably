@@ -1,17 +1,19 @@
-  *{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     position: relative;
     font-family: sans-serif;
 }
-ol, ul, li{
+ol,
+ul,
+li {
     list-style: none;
 }
-a{
+a {
     text-decoration: none;
 }
 
-p{
+p {
     display: block;
 }
