@@ -1,6 +1,6 @@
 require('dotenv').config();
 const router = require('express').Router();
-const { fetchTrendingMovies, fetchMoviesSearch, fetchTrendingTVshows, fetchTVSearch } = require('../public/js/movies');
+const { fetchTrendingMovies, fetchMoviesSearch, fetchTrendingTVshows, fetchTVSearch } = require('../public/dist-js/movies');
 const withAuth = require('../utils/auth');
 const { User, Media } = require('../models');
 
