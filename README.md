@@ -15,7 +15,7 @@ Listably is a media consumption tracker where a user can find trending movies or
 
 ## Usage
 
-1. Go to [Listaly](listably.herokuapp.com)
+1. Go to [Listably](listably1.herokuapp.com)
 2. Please create an account or sign in on the top right corner of the page.
 
 	![Screenshot of the Listably Login](./public/assets/listably-login.png)
